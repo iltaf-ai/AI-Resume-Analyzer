@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+langchain
+langchain-mistralai
+pypdf
+Flask-SQLAlchemy
