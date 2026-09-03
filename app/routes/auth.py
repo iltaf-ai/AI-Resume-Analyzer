@@ -61,3 +61,12 @@ def login():
 
 
 
+@auth_bp.route('/logout')
+def logout():
+    if "id" in session:
+        session.pop("id",None)
+        session.pop("username" , None)
+        session.clear()
+        session.commit()
+
+    return redirect(url_for("auth.login"))
