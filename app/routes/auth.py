@@ -40,5 +40,24 @@ def register():
             db.session.commit()
         return redirect(url_for("auth.login"))
 
+@auth_bp.route('login' , methods = ["GET" , "POST"])
+def login():
+    if "id" in session:
+        return redirect(url_for("auth.dashboard"))
+
+        if request.method == "POST":
+            email = request.form.get("email")
+            password = request.form.get("password")
+
+            user = User.query.filter_by(email=email).first()
+            if user and check_password_hash(user.password , password):
+                    session["id"] = user.id
+                    session["username"] = user.username
+                    flash(f"Login Successfull!" ,"success")
+                    return redirect(url_for("dashboard.dashboard"))
+            flash("Invalid email or passsword" ,"error")
+
+    return redirect(url_for("auth.register"))
+
 
 
