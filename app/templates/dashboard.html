@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer - Dashboard</title>
+</head>
+
+<body>
+
+   
+    <nav>
+
+        <div>
+            <h2>AI Resume Analyzer</h2>
+        </div>
+
+        <div>
+            <span>Welcome, {{ session.get("username") }}</span>
+
+            <a href="{{ url_for('auth.logout') }}">
+                Logout
+            </a>
+        </div>
+
+    </nav>
+
+
+  
+    <main>
+
+        <section>
+
+            <h1>Resume Dashboard</h1>
+
+            <p>
+                Analyze your resume with AI and improve your chances
+                of getting shortlisted.
+            </p>
+
+        </section>
+
+
+        
+        <section>
+
+            <h2>Analyze Your Resume</h2>
+
+            <p>
+                Upload your resume and let AI analyze your skills,
+                experience, keywords and overall resume quality.
+            </p>
+
+            <form method="POST"
+                  action="{{ url_for('dashboard.analyze_resume') }}"
+                  enctype="multipart/form-data">
+
+                <div>
+                    <label for="resume">
+                        Upload Resume
+                    </label>
+
+                    <input
+                        type="file"
+                        id="resume"
+                        name="resume"
+                        accept=".pdf,.doc,.docx"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Analyze Resume
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section>
+
+            <h2>AI Analysis</h2>
+
+            <div>
+
+                <div>
+                    <h3>Resume Score</h3>
+                    <p>Get an overall score for your resume.</p>
+                </div>
+
+                <div>
+                    <h3>Skills Analysis</h3>
+                    <p>Find your important technical and soft skills.</p>
+                </div>
+
+                <div>
+                    <h3>Keyword Analysis</h3>
+                    <p>Check important keywords missing from your resume.</p>
+                </div>
+
+                <div>
+                    <h3>AI Suggestions</h3>
+                    <p>Get AI-powered suggestions to improve your resume.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        
+        <section>
+
+            <h2>Previous Analyses</h2>
+
+            {% if resumes %}
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Resume</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for resume in resumes %}
+
+                        <tr>
+
+                            <td>
+                                {{ resume.filename }}
+                            </td>
+
+                            <td>
+                                {{ resume.score }}
+                            </td>
+
+                            <td>
+                                {{ resume.created_at }}
+                            </td>
+
+                            <td>
+                                <a href="{{ url_for('dashboard.result', id=resume.id) }}">
+                                    View Result
+                                </a>
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            {% else %}
+
+                <p>
+                    No resume analyzed yet.
+                </p>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
