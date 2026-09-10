@@ -1,0 +1,11 @@
+fastapi 
+uvicorn 
+jinja2 
+python-multipart 
+sqlalchemy 
+python-dotenv 
+python-jose 
+passlib[bcrypt] 
+pypdf 
+langchain 
+langchain-mistralai
