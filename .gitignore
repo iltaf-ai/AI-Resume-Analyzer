@@ -1,5 +1,8 @@
 .env
-__pycache__/
-.venv/
 venv/
+__pycache__/
 *.pyc
+uploads/
+*.db
+*.sqlite3
+ca.pem
