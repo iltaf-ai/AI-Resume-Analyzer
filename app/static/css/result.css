@@ -1,0 +1,160 @@
+
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+.navbar {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+#logoutBtn {
+    border: none;
+    padding: 10px 17px;
+    border-radius: 7px;
+    background: #ef4444;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result-page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 45px auto;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.small-title {
+    color: #4f46e5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.header p {
+    color: #777;
+}
+
+.score-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 8px solid #4f46e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.score-circle span {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.score-circle small {
+    color: #777;
+}
+
+.score-card h2 {
+    margin-bottom: 10px;
+}
+
+.score-card p {
+    color: #777;
+    line-height: 1.5;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.analysis-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.analysis-card h2 {
+    margin-bottom: 18px;
+}
+
+.analysis-card div {
+    color: #666;
+    line-height: 1.7;
+}
+
+.roadmap {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roadmap {
+        grid-column: auto;
+    }
+
+    .score-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+}

@@ -1,0 +1,165 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
+}
+
+.dashboard-container {
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    height: 75px;
+    padding: 0 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+#logoutBtn {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#logoutBtn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.dashboard-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 25px;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.welcome-section h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    color: #0f172a;
+}
+
+.welcome-section p {
+    font-size: 18px;
+    color: #64748b;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.13);
+}
+
+.card-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: #eef2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+}
+
+.dashboard-card h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+    color: #1e293b;
+}
+
+.dashboard-card p {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.card-button {
+    display: inline-block;
+    padding: 13px 28px;
+    border-radius: 9px;
+    background: #4f46e5;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.card-button:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+
+    .dashboard-header {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .dashboard-main {
+        padding: 45px 20px;
+    }
+
+    .welcome-section h1 {
+        font-size: 32px;
+    }
+
+    .welcome-section p {
+        font-size: 16px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        padding: 30px 22px;
+    }
+}
+

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis - AI Resume Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/result.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI Resume Analyzer
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+
+    <main class="result-page">
+
+        <section class="header">
+
+            <p class="small-title">
+                AI Analysis
+            </p>
+
+            <h1>Your Resume Analysis</h1>
+
+            <p>
+                Here is the analysis generated from your resume.
+            </p>
+
+        </section>
+
+
+        <section class="score-card">
+
+            <div class="score-circle">
+                <span id="score">--</span>
+                <small>/100</small>
+            </div>
+
+            <div>
+                <h2>Resume Score</h2>
+
+                <p>
+                    Your resume score is based on skills,
+                    structure, experience and overall quality.
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="analysis-grid">
+
+            <div class="analysis-card">
+
+                <h2>Skills</h2>
+
+                <div id="skills">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="analysis-card">
+
+                <h2>Strengths</h2>
+
+                <div id="strengths">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="analysis-card">
+
+                <h2>Weaknesses</h2>
+
+                <div id="weaknesses">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="analysis-card">
+
+                <h2>Improvement Suggestions</h2>
+
+                <div id="suggestions">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="analysis-card roadmap">
+
+                <h2>Career Roadmap</h2>
+
+                <div id="roadmap">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', path='js/result.js') }}"></script>
+
+</body>
+
+</html>

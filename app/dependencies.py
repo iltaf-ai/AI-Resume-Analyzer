@@ -11,7 +11,6 @@ from jose import jwt
 
 from app.model import User
 
-
 SECRET_KEY = settings.SECRET_KEY
 ACCESS_EXPIRE_TOKEN_TIME = settings.ACCESS_EXPIRE_TOKEN_TIME
 ALGORITHM = settings.ALGORITHM

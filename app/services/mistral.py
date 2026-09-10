@@ -1,34 +1,40 @@
-from langchain_mistralai import ChatMistralAI
+from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
+
 from app.config import settings
 
 
-model = ChatMistralAI(
-    model="mistral-medium-latest"
+model = ChatOpenAI(
+    model="gpt-5.6-luna",
+    api_key=settings.OPENAI_API_KEY
 )
+
 
 prompt = ChatPromptTemplate.from_messages([
     (
         "system",
         """
-        You are an AI Resume Analyzer.
+You are an AI Resume Analyzer.
 
-        Analyze the given resume and provide:
-        1. Resume score
-        2. Skills
-        3. Strengths
-        4. Weaknesses
-        5. Improvement suggestions
-        6. Career roadmap
-        """
+Analyze the given resume and provide:
+
+1. Resume score out of 100
+2. Skills
+3. Strengths
+4. Weaknesses
+5. Improvement suggestions
+6. Career roadmap
+
+Give clear and practical feedback based only on the resume.
+"""
     ),
     (
         "human",
         """
-        Analyze this resume:
+Analyze this resume:
 
-        {resume}
-        """
+{resume}
+"""
     )
 ])
 

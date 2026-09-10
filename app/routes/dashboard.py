@@ -1,24 +1,32 @@
-from fastapi.requests import Request  
-from fastapi.responses import Response , HTMLResponse
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
-
-templates = Jinja2Templates(directory="app/templates")
-
-
 dashboard_router = APIRouter()
+
+templates = Jinja2Templates(
+    directory="app/templates"
+)
+
+
 @dashboard_router.get("/dashboard")
-def dashboard(request = Request):
+def dashboard(request: Request):
     return templates.TemplateResponse(
         request=request,
-        name="dashboard_page"
+        name="dashboard.html"
     )
 
 
-@dashboard_router("/resume_page")
-def resume(request:Request):
+@dashboard_router.get("/resume_page")
+def resume_page(request: Request):
     return templates.TemplateResponse(
         request=request,
-        name="resume.html"
+        name="upload.html"
+    )
+
+
+@dashboard_router.get("/analysis")
+def analysis_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="result.html"
     )

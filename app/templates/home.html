@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI Resume Analyzer
+        </div>
+
+        <div class="nav-links">
+            <a href="/login">Login</a>
+            <a href="/register" class="register-btn">Get Started</a>
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="tag">
+                    AI-Powered Resume Analysis
+                </p>
+
+                <h1>
+                    Make Your Resume
+                    <span>Better With AI</span>
+                </h1>
+
+                <p class="description">
+                    Upload your resume and get an AI-powered analysis
+                    with a score, skills, strengths, weaknesses,
+                    improvement suggestions and a career roadmap.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="/register" class="primary-btn">
+                        Analyze My Resume
+                    </a>
+
+                    <a href="/login" class="secondary-btn">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="card-header">
+                    <span>Resume Analysis</span>
+                    <span class="status">AI</span>
+                </div>
+
+                <div class="score">
+                    <strong>85</strong>
+                    <span>/100</span>
+                </div>
+
+                <div class="progress">
+                    <div></div>
+                </div>
+
+                <div class="analysis-item">
+                    <span>Skills</span>
+                    <strong>Strong</strong>
+                </div>
+
+                <div class="analysis-item">
+                    <span>Resume Structure</span>
+                    <strong>Good</strong>
+                </div>
+
+                <div class="analysis-item">
+                    <span>Career Direction</span>
+                    <strong>Clear</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="features">
+
+            <div class="section-heading">
+
+                <p>WHAT YOU GET</p>
+
+                <h2>
+                    Everything You Need To Improve Your Resume
+                </h2>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    <div class="icon">01</div>
+
+                    <h3>Resume Score</h3>
+
+                    <p>
+                        Get an AI-generated score based on
+                        your resume quality and structure.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="icon">02</div>
+
+                    <h3>Skills Analysis</h3>
+
+                    <p>
+                        Discover the skills already present
+                        in your resume and identify gaps.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="icon">03</div>
+
+                    <h3>Career Roadmap</h3>
+
+                    <p>
+                        Get practical suggestions and a roadmap
+                        for improving your career direction.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="cta">
+
+            <h2>
+                Ready To Improve Your Resume?
+            </h2>
+
+            <p>
+                Upload your resume and let AI find ways to improve it.
+            </p>
+
+            <a href="/register">
+                Get Started
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 AI Resume Analyzer
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', path='js/home.js') }}"></script>
+
+</body>
+
+</html>
+

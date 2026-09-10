@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - AI Resume Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/dashboard.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="dashboard-header">
+
+            <div class="logo">
+                AI Resume Analyzer
+            </div>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </header>
+
+
+        <main class="dashboard-main">
+
+            <div class="welcome-section">
+
+                <h1>Resume Dashboard</h1>
+
+                <p>
+                    Analyze your resume and improve your career profile with AI.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        📄
+                    </div>
+
+                    <h2>Upload Resume</h2>
+
+                    <p>
+                        Upload your resume in PDF format and let AI analyze it.
+                    </p>
+
+                    <a href="/resume_page" class="card-button">
+                        Upload Resume
+                    </a>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        📊
+                    </div>
+
+                    <h2>Resume Analysis</h2>
+
+                    <p>
+                        View your saved AI resume analysis, skills, strengths,
+                        weaknesses and suggestions.
+                    </p>
+
+                    <a href="/analysis" class="card-button">
+                        View Analysis
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="{{ url_for('static', path='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>
+

@@ -1,13 +1,14 @@
-from sqlalchemy import create_engine 
-from sqlalchemy.orm import sessionmaker , DeclarativeBase
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 from app.config import settings
+
 DATABASE_URL = settings.DATABASE_URL
 
-enigne = create_engine(
+engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
-     connect_args={
+    connect_args={
         "ssl_verify_cert": True,
         "ssl_verify_identity": True,
         "ssl_ca": "ca.pem"
@@ -15,16 +16,19 @@ enigne = create_engine(
 )
 
 SessionLocal = sessionmaker(
-    bind=enigne,
+    bind=engine,
     autoflush=False,
-    atuo_commit = False
+    autocommit=False
 )
 
-Base = DeclarativeBase()
+
+class Base(DeclarativeBase):
+    pass
+
 
 def get_db():
-    try: 
+    try:
         db = SessionLocal()
         yield db
-    finally :
+    finally:
         db.close()

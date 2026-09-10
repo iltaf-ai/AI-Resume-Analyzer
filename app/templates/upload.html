@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Resume - AI Resume Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/upload.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="upload-container">
+
+        <div class="upload-card">
+
+            <div class="logo">
+                AI Resume Analyzer
+            </div>
+
+            <h1>
+                Upload Your Resume
+            </h1>
+
+            <p class="subtitle">
+                Upload your resume PDF and let AI analyze it.
+            </p>
+
+            <form id="uploadForm">
+
+                <div class="file-box">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Select your resume
+                    </h3>
+
+                    <p>
+                        PDF files only
+                    </p>
+
+                    <input
+                        type="file"
+                        id="resume"
+                        name="file"
+                        accept=".pdf"
+                        required
+                    >
+
+                    <p
+                        class="file-name"
+                        id="fileName"
+                    >
+                        No file selected
+                    </p>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="uploadBtn"
+                >
+                    Analyze Resume
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+            <a
+                href="/dashboard"
+                class="back-link"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+    <script
+        src="{{ url_for('static', path='js/upload.js') }}"
+    ></script>
+
+</body>
+
+</html>
+
