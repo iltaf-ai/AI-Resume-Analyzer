@@ -29,6 +29,11 @@ def register(user: UserCreate , db:Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
 
+    return {
+    "message": "User registered successfully"
+}
+
+
 @auth_router.post("/login")
 def login(user:UserLogin , db:Session = Depends(get_db)):
 
@@ -48,7 +53,7 @@ def login(user:UserLogin , db:Session = Depends(get_db)):
         }
 
     token = create_token({
-        "password" : user.username
+        "username" : user_exiting.username
     })
 
     return {
@@ -57,15 +62,22 @@ def login(user:UserLogin , db:Session = Depends(get_db)):
         }
 
 
+@auth_router.post("/logout")
+def logout(user: UserLogin , db:Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == user.email)
+    if user:
+        db.delete(user)
+        db.commit()
+
 
 @auth_router.get("/register", response_class=HTMLResponse)
 def register_page(request : Request):
     return templates.TemplateResponse(
-        request=register,
+        request=request,
         name= "register.html"
     )
 
-@auth_router.post("/login" , response_class=HTMLResponse)
+@auth_router.get("/login" , response_class=HTMLResponse)
 def login_page(request : Request):
     return templates.TemplateResponse(
         request=request,
