@@ -7,12 +7,7 @@ DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(
     DATABASE_URL,
-    pool_pre_ping=True,
-    connect_args={
-        "ssl_verify_cert": True,
-        "ssl_verify_identity": True,
-        "ssl_ca": "ca.pem"
-    }
+    pool_pre_ping=True
 )
 
 SessionLocal = sessionmaker(
