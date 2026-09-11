@@ -39,14 +39,14 @@ async def upload_resume(
 
     file_path = os.path.join(UPLOAD_DIR, filename)
 
-    try:
-        with open(file_path, "wb") as buffer:
+   
+    with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
-        extracted_text = extract_resume_text(file_path)
-        analysis = analyze_resume(extracted_text)
+    extracted_text = extract_resume_text(file_path)
+    analysis = analyze_resume(extracted_text)
 
-        new_resume = Resume(
+    new_resume = Resume(
             user_id=current_user.id,
             filename=filename,
             file_path=file_path,
@@ -54,18 +54,16 @@ async def upload_resume(
             analysis=analysis
         )
 
-        db.add(new_resume)
-        db.commit()
-        db.refresh(new_resume)
+    db.add(new_resume)
+    db.commit()
+    db.refresh(new_resume)
 
-        return {
+    return {
             "message": "Resume analyzed successfully",
             "filename": filename
         }
 
-    finally:
-        if os.path.exists(file_path):
-            os.remove(file_path)
+  
 
 
 @resume_router.get("/analysis/data")
@@ -87,4 +85,6 @@ def get_analysis_data(
         "filename": resume.filename,
         "analysis": resume.analysis
     }
+
+
 
