@@ -59,3 +59,24 @@ async def upload_resume(
         "message": "Resume analyzed successfully",
         "filename": filename
     }
+
+
+@resume_router.get("/analysis/data")
+def get_analysis_data(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current)
+):
+    resume = db.query(Resume).filter(
+        Resume.user_id == current_user.id
+    ).first()
+
+    if not resume:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No resume found"
+        )
+
+    return {
+        "filename": resume.filename,
+        "analysis": resume.analysis
+    }
