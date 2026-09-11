@@ -18,7 +18,6 @@ UPLOAD_DIR = "/tmp/uploads"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-
 @resume_router.post("/upload")
 async def upload_resume(
     file: UploadFile = File(...),
@@ -26,27 +25,25 @@ async def upload_resume(
     current_user=Depends(get_current)
 ):
     filename = file.filename
+    file_path = os.path.join(UPLOAD_DIR, filename)
+
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    extracted_text = extract_resume_text(file_path)
+    analysis = analyze_resume(extracted_text)
 
     existing_resume = db.query(Resume).filter(
         Resume.user_id == current_user.id
     ).first()
 
     if existing_resume:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Resume already exists"
-        )
-
-    file_path = os.path.join(UPLOAD_DIR, filename)
-
-   
-    with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-
-    extracted_text = extract_resume_text(file_path)
-    analysis = analyze_resume(extracted_text)
-
-    new_resume = Resume(
+        existing_resume.filename = filename
+        existing_resume.file_path = file_path
+        existing_resume.extracted_text = extracted_text
+        existing_resume.analysis = analysis
+    else:
+        new_resume = Resume(
             user_id=current_user.id,
             filename=filename,
             file_path=file_path,
@@ -54,37 +51,11 @@ async def upload_resume(
             analysis=analysis
         )
 
-    db.add(new_resume)
+        db.add(new_resume)
+
     db.commit()
-    db.refresh(new_resume)
 
     return {
-            "message": "Resume analyzed successfully",
-            "filename": filename
-        }
-
-  
-
-
-@resume_router.get("/analysis/data")
-def get_analysis_data(
-    db: Session = Depends(get_db),
-    current_user=Depends(get_current)
-):
-    resume = db.query(Resume).filter(
-        Resume.user_id == current_user.id
-    ).first()
-
-    if not resume:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="No resume found"
-        )
-
-    return {
-        "filename": resume.filename,
-        "analysis": resume.analysis
+        "message": "Resume analyzed successfully",
+        "filename": filename
     }
-
-
-
