@@ -14,12 +14,13 @@ from app.dependencies import get_current
 resume_router = APIRouter()
 
 
-UPLOAD_DIR = "uploads"
 
+UPLOAD_DIR = "/tmp/uploads"
 
 if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
 
+    
 
 @resume_router.post("/upload")
 def upload_resume(
