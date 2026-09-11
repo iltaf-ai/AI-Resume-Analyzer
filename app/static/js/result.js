@@ -4,7 +4,6 @@ if (!token) {
     window.location.href = "/login";
 }
 
-
 const score = document.getElementById("score");
 const skills = document.getElementById("skills");
 const strengths = document.getElementById("strengths");
@@ -21,6 +20,8 @@ function formatText(text) {
     }
 
     return text
+        .replace(/\\#/g, "#")
+        .replace(/\\\*/g, "*")
         .replace(/\n/g, "<br>")
         .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
         .replace(/### (.*?)(<br>|$)/g, "<h3>$1</h3>")
@@ -42,7 +43,6 @@ async function getAnalysis() {
 
         const data = await response.json();
 
-
         console.log("STATUS:", response.status);
         console.log("DATA:", data);
 
@@ -50,7 +50,6 @@ async function getAnalysis() {
         if (response.status === 401) {
 
             localStorage.removeItem("token");
-
             window.location.href = "/login";
 
             return;
@@ -62,11 +61,17 @@ async function getAnalysis() {
             throw new Error(
                 data.detail || "Failed to load analysis"
             );
+
         }
 
 
         const analysis = data.analysis || "";
 
+
+        console.log("ANALYSIS:", analysis);
+
+
+        // SCORE
 
         const scoreMatch = analysis.match(
             /Resume Score:\s*\**(\d+)\s*\/\s*100/i
@@ -80,8 +85,11 @@ async function getAnalysis() {
         } else {
 
             score.textContent = "--";
+
         }
 
+
+        // SECTION POSITIONS
 
         const skillsStart = analysis.search(
             /##\s*2\.\s*Skills/i
@@ -104,6 +112,15 @@ async function getAnalysis() {
         );
 
 
+        console.log("Skills:", skillsStart);
+        console.log("Strengths:", strengthsStart);
+        console.log("Weaknesses:", weaknessesStart);
+        console.log("Suggestions:", suggestionsStart);
+        console.log("Roadmap:", roadmapStart);
+
+
+        // SKILLS
+
         if (
             skillsStart !== -1 &&
             strengthsStart !== -1
@@ -118,9 +135,12 @@ async function getAnalysis() {
 
         } else {
 
-            skills.innerHTML = formatText(analysis);
+            skills.textContent = "No skills found.";
+
         }
 
+
+        // STRENGTHS
 
         if (
             strengthsStart !== -1 &&
@@ -136,10 +156,12 @@ async function getAnalysis() {
 
         } else {
 
-            strengths.textContent =
-                "No strengths found.";
+            strengths.textContent = "No strengths found.";
+
         }
 
+
+        // WEAKNESSES
 
         if (
             weaknessesStart !== -1 &&
@@ -155,10 +177,12 @@ async function getAnalysis() {
 
         } else {
 
-            weaknesses.textContent =
-                "No weaknesses found.";
+            weaknesses.textContent = "No weaknesses found.";
+
         }
 
+
+        // SUGGESTIONS
 
         if (
             suggestionsStart !== -1 &&
@@ -174,10 +198,12 @@ async function getAnalysis() {
 
         } else {
 
-            suggestions.textContent =
-                "No suggestions found.";
+            suggestions.textContent = "No suggestions found.";
+
         }
 
+
+        // ROADMAP
 
         if (roadmapStart !== -1) {
 
@@ -189,12 +215,14 @@ async function getAnalysis() {
 
         } else {
 
-            roadmap.textContent =
-                "No roadmap found.";
+            roadmap.textContent = "No roadmap found.";
+
         }
 
+    }
 
-    } catch (error) {
+
+    catch (error) {
 
         console.error("Analysis Error:", error);
 
@@ -210,7 +238,9 @@ async function getAnalysis() {
         suggestions.textContent = "";
 
         roadmap.textContent = "";
+
     }
+
 }
 
 
@@ -229,4 +259,5 @@ if (logoutBtn) {
 
         }
     );
+
 }
